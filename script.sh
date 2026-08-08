@@ -38,3 +38,8 @@ if [ $# -eq 1 ]; then
 elif [ $# -ne 2 ]; then
   usage 1
 fi
+
+#    storing the passed arguments to an ACTION and a VARIABLE
+
+ACTION= "${1}"
+ARGUMENT= "${2}"
