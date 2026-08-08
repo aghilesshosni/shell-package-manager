@@ -59,3 +59,17 @@ do_remove(){
 do_info(){
   echo "[DEBUG] Showing info about package : ${1}"
 }
+
+
+#    Mapping arguments to functions
+#    We use here Bash associative array
+#    do_action  calls required action
+declare -A ACTIONS=(
+  [info]=do_info
+  [install]=do_install
+  [remove]=do_remove
+  [create]=do_create
+)
+do_action "${ACTION}" "${ARGUMENT}"
+
+
