@@ -43,3 +43,19 @@ fi
 
 ACTION= "${1}"
 ARGUMENT= "${2}"
+
+#    Function definitions for actions
+
+do_create(){
+  echo "[DEBUG] Creating a package for : ${1}"
+}
+
+do_install(){
+  echo "[DEBUG] Installing package : ${1}"
+}
+do_remove(){
+  echo "[DEBUG] Installing package : ${1}"
+}
+do_info(){
+  echo "[DEBUG] Showing info about package : ${1}"
+}
