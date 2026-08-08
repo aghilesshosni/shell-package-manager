@@ -1,6 +1,29 @@
 #!/bin/bash
 
+#    &> is used to redirect errors and non error logs to same destination
+
 if ! command -v dpkg-query &> /dev/bull ;then
-   echo "[ERROR] dpkg-query is not installed, are you on a Debian Based distribution ?"
-   exit 1
+  echo "[ERROR] dpkg-query is not installed, are you on a Debian Based distribution ?"
+  exit 1
 fi
+
+
+#    Help menu should show all available functions
+#    printf command prints multiline message
+#    exit_code is used if no argument is passed
+
+usage(){
+  printf '%s\n' \
+  " Usage: ${0} info|install|remove|create|help ARGS" \
+  "" \
+  " - info : show information of a given package" \
+  " - install : install a given package" \
+  " - remove : remove a given package" \
+  " - crete : create a .deb package from a given directory" \
+  " - help : show this help"
+
+
+  local exit_code="$([ ${1} != 1] && echo 0 || echo 1)"
+  exit "${exit_code}"
+
+}   
