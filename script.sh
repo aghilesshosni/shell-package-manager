@@ -73,6 +73,7 @@ declare -A ACTIONS=(
 do_action "${ACTION}" "${ARGUMENT}"
 
 
+
 #    do_action function
 #    the following part is the check for action validation and execution
 do_action(){
@@ -86,4 +87,7 @@ do_action(){
   eval "$ {cmd} ${package}"
 }
 
-
+#    check package existence
+is_package_exist(){
+  dpkg-query -l "${package}" >/dev/null
+]
