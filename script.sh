@@ -27,3 +27,14 @@ usage(){
   exit "${exit_code}"
 
 }   
+
+
+#    controlling the number of arguments
+#    number of arguments could be 1 or 2
+#    only one argument (help) or action and package name thus 2
+
+if [ $# -eq 1 ]; then
+  [ "${1}" != "help" && usage 1 || usage 0
+elif [ $# -ne 2 ]; then
+  usage 1
+fi
