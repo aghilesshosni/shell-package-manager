@@ -70,7 +70,6 @@ declare -A ACTIONS=(
   [remove]=do_remove
   [create]=do_create
 )
-do_action "${ACTION}" "${ARGUMENT}"
 
 
 
@@ -78,10 +77,10 @@ do_action "${ACTION}" "${ARGUMENT}"
 #    the following part is the check for action validation and execution
 do_action(){
   local action="${1}"
-  local action="${2}"
+  local package="${2}"
   local cmd="${ACTIONS[${action}]}"
 
-  [ -z "${cmd}"] && usage 1
+  [ -z "${cmd}" ] && usage 1
 
   echo "[DEBUG] Running command : ${cmd}"
   eval "${cmd} ${package}"
@@ -155,3 +154,8 @@ do_create(){
     dpkg-deb -b "${directory}"
   fi
 }
+
+
+
+do_action "${ACTION}" "${ARGUMENT}"
+	
