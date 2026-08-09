@@ -110,3 +110,17 @@ do_info(){
     echo "[INFO] package: ${package} is not installed"
   fi
 }
+
+
+
+#    do_remove function
+
+do_remove(){
+  local package="${1}"
+  if is_package_exist "${package}"; then
+    echo "[DEBUG] Removing package: ${package}"
+    dpkg -P ${package}
+  else
+    echo "[INFO] package: ${package} is already not installed"
+  fi
+}
