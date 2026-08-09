@@ -91,3 +91,22 @@ do_action(){
 is_package_exist(){
   dpkg-query -l "${package}" >/dev/null
 ]
+
+
+
+#    do_info function
+#    wrap format options with single quote !
+#    -f, --showformat=format is used to specify the format of the output --show will produce
+do_info(){
+  local package="${1}"
+  if is_package_exist "${package}"; then
+    echo "[DEBUG] Showing info about package: ${package}"
+    dpkg-query \
+      --show \
+      --showformat \
+      'Package:${Package}\nSize:${Installed-Size}\nStatus:${db:Status-Status}\n' \
+      ${package}
+  else
+    echo "[INFO] package: ${package} is not installed"
+  fi
+}
