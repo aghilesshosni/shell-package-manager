@@ -23,7 +23,7 @@ usage(){
   " - help : show this help"
 
 
-  local exit_code="$([ ${1} != 1] && echo 0 || echo 1)"
+  local exit_code="$([ ${1} != 1 ] && echo 0 || echo 1)"
   exit "${exit_code}"
 
 }   
@@ -34,15 +34,15 @@ usage(){
 #    only one argument (help) or action and package name thus 2
 
 if [ $# -eq 1 ]; then
-  [ "${1}" != "help" && usage 1 || usage 0
+  [ "${1}" != "help" ] && usage 1 || usage 0
 elif [ $# -ne 2 ]; then
   usage 1
 fi
 
 #    storing the passed arguments to an ACTION and a VARIABLE
 
-ACTION= "${1}"
-ARGUMENT= "${2}"
+ACTION="${1}"
+ARGUMENT="${2}"
 
 #    Function definitions for actions
 
@@ -79,12 +79,12 @@ do_action "${ACTION}" "${ARGUMENT}"
 do_action(){
   local action="${1}"
   local action="${2}"
-  local cmd ="${ACTIONS[${action}]}"
+  local cmd="${ACTIONS[${action}]}"
 
   [ -z "${cmd}"] && usage 1
 
   echo "[DEBUG] Running command : ${cmd}"
-  eval "$ {cmd} ${package}"
+  eval "${cmd} ${package}"
 }
 
 #    check package existence
@@ -149,7 +149,7 @@ do_install(){
 do_create(){
   local directory="${1}"
   echo "[DEBUG] Creating a package for: ${directory}"
-  if [! -d "${directory}" ]; then
+  if [ ! -d "${directory}" ]; then
     echo "[ERROR] Directory ${directory} does not exist"
   else
     dpkg-deb -b "${directory}"
