@@ -2,7 +2,7 @@
 
 #    &> is used to redirect errors and non error logs to same destination
 
-if ! command -v dpkg-query &> /dev/bull ;then
+if ! command -v dpkg-query &> /dev/null ;then
   echo "[ERROR] dpkg-query is not installed, are you on a Debian Based distribution ?"
   exit 1
 fi
@@ -90,7 +90,7 @@ do_action(){
 #    check package existence
 is_package_exist(){
   dpkg-query -l "${package}" >/dev/null
-]
+}
 
 
 
