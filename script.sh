@@ -141,3 +141,17 @@ do_install(){
   echo "[DEBUG] Installing package : ${package}"
   apt install ${package}
 }
+
+
+
+
+#    do_create function
+do_create(){
+  local directory="${1}"
+  echo "[DEBUG] Creating a package for: ${directory}"
+  if [! -d "${directory}" ]; then
+    echo "[ERROR] Directory ${directory} does not exist"
+  else
+    dpkg-deb -b "${directory}"
+  fi
+}
