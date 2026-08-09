@@ -124,3 +124,20 @@ do_remove(){
     echo "[INFO] package: ${package} is already not installed"
   fi
 }
+
+
+
+#    do_install function for installing local package is it exists or remote one of not
+do_install(){
+  local package="${1}"
+  if [[ "${package}" == *.deb ]] && [ ! -f "${package}" ]; then
+    echo "[ERROR] Package file ${package} does not exist"
+    return
+  elif is_package_exist "${package}"; then
+    echo "[ERROR] Package ${package} is already installed"
+    return
+  fi
+
+  echo "[DEBUG] Installing package : ${package}"
+  apt install ${package}
+}
